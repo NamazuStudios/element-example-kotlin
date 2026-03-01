@@ -19,6 +19,7 @@
         <encoding>UTF-8</encoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <kotlin.version>2.1.0</kotlin.version>
         <elements.version>3.7.10-SNAPSHOT</elements.version>
         <swagger.version>2.2.22</swagger.version>
         <guice.version>7.0.0</guice.version>
@@ -39,6 +40,14 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.4.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>kotlin-maven-plugin</artifactId>
+                    <version>${kotlin.version}</version>
+                    <configuration>
+                        <jvmTarget>21</jvmTarget>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -90,6 +99,12 @@
                 <groupId>com.example.element</groupId>
                 <artifactId>element</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib</artifactId>
+                <version>${kotlin.version}</version>
             </dependency>
 
         </dependencies>
