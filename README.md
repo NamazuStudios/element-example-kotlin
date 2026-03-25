@@ -216,6 +216,14 @@ Try out GET http://localhost:8080/app/rest/example-element/helloworld
 > [!Note]
 > The `example-element` portion of the URL is determined by the `dev.getelements.elements.app.serve.prefix` value in the `dev.getelements.element.attributes.properties` file in the deployment project.
 
+---
+
+## Dashboard UI Plugins
+
+Elements can inject custom pages into the Elements dashboard by shipping a React component bundle alongside the Element's Kotlin code. See **[ui/README.md](ui/README.md)** for the full guide.
+
+---
+
 # Further Reading
 
 Elements uses two standard APIs for the inbound/outbound communication. Jakarta WebSocket and Jakarta RESTful Web Services. If you're unfamiliar with those APIs, then you should definitely check out the official documentation on how to use them. We've linked several great resources below to get you started.
