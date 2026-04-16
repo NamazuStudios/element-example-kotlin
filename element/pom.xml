@@ -208,6 +208,24 @@
                             </target>
                         </configuration>
                     </execution>
+                    <!-- Stages static content if it is available -->
+                    <execution>
+                        <id>elm-stage-static-content</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy todir="${elm.element.dir}/static" failonerror="false">
+                                    <fileset dir="${basedir}/src/main/static" erroronmissingdir="false" includes="**/*"/>
+                                </copy>
+                                <copy todir="${elm.element.dir}/ui" failonerror="false">
+                                    <fileset dir="${basedir}/src/main/ui" erroronmissingdir="false" includes="**/*"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
                     <!--
                         Writes the element manifest properties file into the root of the element directory.
                         The loader reads this file to obtain version metadata and required builtin SPIs.
