@@ -63,7 +63,7 @@ To generate non-interactively, supply all parameters on the command line:
 ```bash
 mvn archetype:generate \
   -DarchetypeGroupId=dev.getelements.elements \
-  -DarchetypeArtifactId=sdk-standard-element \
+  -DarchetypeArtifactId=sdk-element-standard-kt \
   -DarchetypeVersion=3.7.0-SNAPSHOT \
   -DgroupId=com.mystudio.mygame \
   -DartifactId=my-element \
