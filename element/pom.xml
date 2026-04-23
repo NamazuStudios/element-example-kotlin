@@ -163,6 +163,18 @@
                             <prependGroupId>true</prependGroupId>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>elm-copy-kotlin-stdlib-api</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${elm.element.dir}/api</outputDirectory>
+                            <includeGroupIds>org.jetbrains.kotlin</includeGroupIds>
+                            <prependGroupId>true</prependGroupId>
+                        </configuration>
+                    </execution>
                     <!--
                         Copies all non-provided dependencies into the "lib" directory of the staging area.
                         These are the runtime libraries bundled with the Element.
