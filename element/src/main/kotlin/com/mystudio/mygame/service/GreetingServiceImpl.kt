@@ -1,9 +1,11 @@
 package com.mystudio.mygame.service
 
+import dev.getelements.elements.sdk.annotation.ElementServiceExport
 import dev.getelements.elements.sdk.model.user.User
 import dev.getelements.elements.sdk.service.user.UserService
 import jakarta.inject.Inject
 
+@ElementServiceExport(GreetingService::class)
 class GreetingServiceImpl : GreetingService {
 
     private lateinit var userService: UserService

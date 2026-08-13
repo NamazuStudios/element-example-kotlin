@@ -23,6 +23,14 @@ class HelloWorldApplication : Application() {
         val APPLICATION_PREFIX: String = "dev.getelements.elements.app.serve.prefix"
 
         @JvmField
+        @ElementDefaultAttribute("/element/example/api")
+        val RS_ROOT: String = "dev.getelements.elements.element.rs.root"
+
+        @JvmField
+        @ElementDefaultAttribute("/element/example/ws")
+        val WS_ROOT: String = "dev.getelements.elements.element.ws.root"
+
+        @JvmField
         @ElementDefaultAttribute("/app/static/test/path")
         val STATIC_CONTENT_URI: String = "dev.getelements.element.static.uri"
 
