@@ -29,7 +29,10 @@ mvn install
 docker compose -f services-dev/docker-compose.yml up -d
 
 # Run locally (from project root)
-mvn -pl debug exec:java
+# -Dexec.classpathScope=compile is required: the SDK classes this entrypoint
+# needs (e.g. dev.getelements.elements.sdk.deployment.*) are "provided" scope,
+# and exec:java's default "runtime" classpath scope excludes "provided" deps.
+mvn -pl debug exec:java -Dexec.mainClass=Run -Dexec.classpathScope=compile
 ```
 
 ## Key Patterns
@@ -311,7 +314,7 @@ The full Elements platform REST API is available as an OpenAPI spec at:
 http://localhost:8080/api/rest/openapi.json
 ```
 
-> **Note:** If this URL returns 404 or is unreachable, the local Elements instance is not running. Run the debug script first (`mvn -pl debug exec:java`) to bring the instance online, then retry.
+> **Note:** If this URL returns 404 or is unreachable, the local Elements instance is not running. Run the debug script first (`mvn -pl debug exec:java -Dexec.mainClass=Run -Dexec.classpathScope=compile`) to bring the instance online, then retry.
 
 ## Namazu Elements Core REST API (Source Reference)
 

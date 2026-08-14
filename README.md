@@ -1,8 +1,8 @@
-# element-example
+# element-example-kotlin
 
 Welcome to Elements!
 
-This project is intended to provide a simple example that can be used as a reference or starting point when creating your own custom Element within Elements.
+This project is intended to provide a simple **Kotlin** example that can be used as a reference or starting point when creating your own custom Element within Elements. If you're looking for the Java-flavored version of this same reference project, see the sibling `element-example` repository — the two follow the same multi-module (`api`/`ui`/`element`/`debug`) structure and REST/Guice patterns, just in different source languages.
 
 Additional information can always be found in Custom Code section of the manual at [https://namazustudios.com/docs/](https://namazustudios.com/docs/)
 
@@ -12,40 +12,28 @@ If you have any questions, come say hi!
 
 ---
 
-## Namazu Elements 3.7 — Upcoming Release Notice
+## Namazu Elements Version
 
-The `example/3.7` branch of this repository targets the upcoming **Namazu Elements 3.7.x** release, which introduces fundamental changes to how Elements are built and distributed. The core shift is that Elements are now loaded and referenced entirely by their **Maven artifact coordinates**, replacing the previous git-based deployment mechanism. This brings proper repository-based publishing, isolated per-element classpaths, and explicit inter-element API contracts via a new `.elm` archive format.
+`main` targets **Namazu Elements 3.8.x** (see `<elements.version>` in the root `pom.xml`) and already reflects the multi-module (`api`/`ui`/`element`/`debug`), Maven-artifact-coordinate-based project layout and `.elm` archive format introduced in 3.7. Unlike the Java `element-example` repository, this repository does not currently maintain separate `example/<version>` branches — there is only `main`.
 
-If you are upgrading an existing Element, please consult the appropriate migration guide before updating your project:
+If you are upgrading an existing pre-3.7 Element to this layout, the migration guides below are still a useful reference for the structural changes involved (single-module to multi-module restructuring, git-based to Maven-artifact-based deployment):
 
 - **[MIGRATION_3.6.md](MIGRATION_3.6.md)** — Upgrading from Elements 3.6 to 3.7
 - **[MIGRATION_3.5.md](MIGRATION_3.5.md)** — Upgrading from Elements 3.5 or earlier to 3.7 (includes the full single-module to multi-module restructuring)
-
-### Branch strategy
-
-Each major and minor release of Namazu Elements has a corresponding `example/<version>` branch in this repository that contains a working example project targeting that release:
-
-| Branch | Elements version |
-|---|---|
-| `example/3.7` | 3.7.x (upcoming) |
-| `example/3.6` | 3.6.x |
-| `example/3.5` | 3.5.x and earlier (see `main`) |
-
-Going forward, every major and minor release will be kept in its own branch so that you can always check out the branch matching your deployed version of Elements and have a known-good reference project to build from.
 
 ---
 
 ## Starting from Maven Archetype (3.7 and Later)
 
-As of 3.7, the fastest way to start a new Element project is with the official [Maven Archetype](https://maven.apache.org/guides/introduction/introduction-to-archetypes.html). The archetype `sdk-standard-element` from the `dev.getelements.elements` group generates a skeleton multi-module Element project using the same structure as the example code in this repository.
+As of 3.7, the fastest way to start a new Element project is with the official [Maven Archetype](https://maven.apache.org/guides/introduction/introduction-to-archetypes.html). The archetype `sdk-element-standard-kt` from the `dev.getelements.elements` group generates a skeleton multi-module **Kotlin** Element project using the same structure as the example code in this repository. (The Java equivalent is `sdk-element-standard`.)
 
 Run the following command to generate a new project interactively:
 
 ```bash
 mvn archetype:generate \
   -DarchetypeGroupId=dev.getelements.elements \
-  -DarchetypeArtifactId=sdk-standard-element \
-  -DarchetypeVersion=3.7.0-SNAPSHOT
+  -DarchetypeArtifactId=sdk-element-standard-kt \
+  -DarchetypeVersion=3.8.14
 ```
 
 Maven will prompt you for the standard coordinates (`groupId`, `artifactId`, `version`, `package`) plus one additional parameter specific to this archetype:
@@ -56,7 +44,7 @@ Maven will prompt you for the standard coordinates (`groupId`, `artifactId`, `ve
 | `artifactId` | The Maven artifact ID for your Element (e.g. `my-element`) |
 | `version` | Your project version (e.g. `1.0-SNAPSHOT`) |
 | `package` | The root Java package for generated source files |
-| `elementsVersion` | The Namazu Elements version to target (e.g. `3.7.0-SNAPSHOT`) |
+| `elementsVersion` | The Namazu Elements version to target (e.g. `3.8.14`) |
 
 To generate non-interactively, supply all parameters on the command line:
 
@@ -64,14 +52,16 @@ To generate non-interactively, supply all parameters on the command line:
 mvn archetype:generate \
   -DarchetypeGroupId=dev.getelements.elements \
   -DarchetypeArtifactId=sdk-element-standard-kt \
-  -DarchetypeVersion=3.7.0-SNAPSHOT \
+  -DarchetypeVersion=3.8.14 \
   -DgroupId=com.mystudio.mygame \
   -DartifactId=my-element \
   -Dversion=1.0-SNAPSHOT \
   -Dpackage=com.mystudio.mygame \
-  -DelementsVersion=3.7.0-SNAPSHOT \
+  -DelementsVersion=3.8.14 \
   -DinteractiveMode=false
 ```
+
+> **Note:** Match `archetypeVersion`/`elementsVersion` to whichever Namazu Elements release you're targeting — `3.8.14` above matches this repository's own `<elements.version>`, but check the archetype's available versions in your Maven repository if targeting a different release.
 
 The generated project is a ready-to-build starting point. From there, refer to the rest of this README and the example code in this repository as a reference for adding endpoints, Guice modules, services, and other features.
 
