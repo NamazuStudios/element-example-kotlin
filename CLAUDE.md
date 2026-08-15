@@ -2,6 +2,8 @@
 
 This is a reference/example project for **Namazu Elements 3.8**, demonstrating how to build a custom Element using the multi-module Maven structure, REST endpoints, Guice DI, and the `.elm` archive format.
 
+For anything not covered here, consult the [Namazu Elements Manual](https://github.com/NamazuStudios/elements-manual) — the raw Markdown source (under `site/`) mirrored from the published docs at [namazustudios.com/docs](https://namazustudios.com/docs/). This project has its own dedicated walkthrough there: [element-example-kotlin-complete-walkthrough.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/element-example-kotlin-complete-walkthrough.md). See "Further Reading" at the bottom of this file for links to manual pages relevant to specific topics.
+
 ## Project Structure
 
 ```
@@ -400,3 +402,19 @@ This is safe to add even when there is no reflection — it only adds ~1 MB to t
 ### Jackson + Kotlin
 
 Do not use `KotlinModule` with Jackson in Elements. The Elements runtime already configures a shared `ObjectMapper`; adding `KotlinModule` causes classloader conflicts. Plain `data class` types serialize correctly via their generated getters — no special configuration needed.
+
+## Further Reading
+
+The [Namazu Elements Manual](https://github.com/NamazuStudios/elements-manual) (raw Markdown under `site/`) covers the full platform. Pages relevant to topics in this file:
+
+| Topic | Manual page |
+|---|---|
+| This project, start to finish | [element-example-kotlin-complete-walkthrough.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/element-example-kotlin-complete-walkthrough.md) |
+| Element structure & module layout | [structuring-your-element.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/structuring-your-element.md), [element-anatomy-a-technical-deep-dive.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/element-anatomy-a-technical-deep-dive.md) |
+| Guice DI / Jakarta patterns | [introduction-to-guice-and-jakarta-in-elements.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/introduction-to-guice-and-jakarta-in-elements.md) |
+| Packaging & deploying the `.elm` | [packaging-an-element-with-maven.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/packaging-an-element-with-maven.md), [deploying-an-element.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/deploying-an-element.md) |
+| Auth, sessions, security model | [security-model.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/security-model.md), [user-authentication-in-elements.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/user-authentication-in-elements.md), [auth-schemes.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/auth-schemes.md), [sessions.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/sessions.md) |
+| REST APIs & OpenAPI/Swagger | [restful-apis.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/restful-apis.md), [swagger-and-swagger-ui.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/swagger-and-swagger-ui.md) |
+| WebSockets | [websockets.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/websockets.md) |
+| Events (`Element.publish`) | [events.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/events.md) |
+| Data models / database access | [data-models.md](https://github.com/NamazuStudios/elements-manual/blob/main/site/data-models.md) (also see [MORPHIA.md](MORPHIA.md) for this project's specifics) |
